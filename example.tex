@@ -1,0 +1,148 @@
+%\documentclass[twoside,a4paper]{article}
+\documentclass[a4paper]{article}
+\usepackage[a4paper]{geometry}
+% \usepackage{showframe}
+
+%\usepackage[T1]{fontenc}
+%\usepackage{accanthis}
+\usepackage{librebaskerville}
+%\usepackage[T1]{fontenc}
+\usepackage{fontspec}
+%\setmainfont{Times New Roman}
+%\setmainfont{EB Garamond}
+%\setmainfont{Linux Libertine O}
+%\setmainfont{VL PGothic}
+%\setmainfont{Classic Trash 1 BRK}
+%\setmainfont{Schneidler Blk BT}
+%\setmainfont{Times New Roman Bold}
+\setmainfont{Latin Modern Roman Slanted}
+
+\usepackage{verbatim}
+
+\usepackage{titlesec}
+\setcounter{secnumdepth}{5}
+\setcounter{tocdepth}{3}
+
+\titleformat{\paragraph}
+{\normalfont\normalsize\bfseries\slshape\footnotesize}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}
+{-1pt}{3.25ex plus 1ex minus .2ex}{-.5ex plus .2ex}
+
+% >>> ADDED (Mon, 25 Jun 2018 19:06:28 +0900)
+\titleformat{\subparagraph}
+{\normalfont\normalsize\bfseries\slshape\footnotesize}{\thesubparagraph}{1em}{}
+\titlespacing*{\subparagraph}
+{-1pt}{3.25ex plus 1ex minus .2ex}{-.5ex plus .2ex}
+% <<< ADDED (Mon, 25 Jun 2018 19:06:28 +0900)
+
+% >>> PATCHING TITLESEC BUG
+% https://tex.stackexchange.com/questions/299969/
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\ttlh@hang}{\parindent\z@}{\parindent\z@\leavevmode}{}{}
+\patchcmd{\ttlh@hang}{\noindent}{}{}{}
+\makeatother
+
+% <<< PATCHING TITLESEC BUG 
+
+% >>> QUOTATION
+\def \quotes [#1] #2 {%
+	\begin{quote}
+		\itshape\small\raggedleft
+		\parbox{250pt} {
+			#2
+			\begin{flushright}
+				\small{--- #1}
+			\end{flushright}
+		}
+	\end{quote}
+		~\newline
+}
+% <<< QUOTATION
+
+\usepackage{lilyglyphs}
+\input{ ly-manual/accidentals.inp }
+
+
+%\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\graphicspath{ {ly-generated/} {ly-manual/} }
+\usepackage{subcaption}
+
+
+%\usepackage{attachfile2}
+\usepackage[hypertexnames=false]{hyperref}
+\hypersetup{
+	colorlinks,
+	citecolor=black,
+	filecolor=black,
+	linkcolor=black,
+	urlcolor=black
+}
+
+%\makeatletter
+%\@addtoreset{section}{part}
+%\makeatother  
+
+% \newcounter{section}[part]
+
+\input tikz
+
+\def\slant#1#2{%
+	\tikz[baseline=(X.base), xslant=tan(#1)]
+	\node[inner sep=0pt, xslant=tan(#1)](X){#2};%
+}
+\def \caccidental#1{%
+	\kern -0.70em \slant{15}{%
+		\textsuperscript{ \scalebox{.9}{ #1 } }%
+	}%
+	\kern -0.40em %
+}
+\def \cdoublesharp {%
+	\caccidental{ \doublesharp }%
+}
+\def \cdoubleflat {%
+	\caccidental{ \flatflat }%
+}
+
+\def \csharp {%
+	\caccidental{ \sharp }%
+}
+\def \cflat{%
+	\caccidental{ \flat  }% 
+}
+\def \cnatural{%
+	\caccidental{ \natural }%
+}
+
+% \usepackage{letltxmacro}
+% \LetLtxMacro{\orgsharp}{\sharp}
+% \renewcommand{\sharp}{ \caccidental{ \orgsharp } }
+% \LetLtxMacro{\orgflat}{\flat}
+% \renewcommand{\flat}{ \caccidental{ \orgflat } }
+% \LetLtxMacro{\orgnatural}{\natural}
+% \renewcommand{\natural}{ \caccidental{ \orgnatural } }
+
+
+% >>> BEGIN DOCUMENT
+
+\title{Chromatic Solfège for Improvisers}
+\author{Atsushi Oka}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+% \section{section}
+% \subsection{subsection}
+% \subsubsection{subsubsection}
+% \paragraph{paragraph}
+% \subparagraph{subparagraph}
+
+\input{ly-generated/example-output.tex}
+
+\end{document}
+
+
+% vim: wrap linebreak spell :
