@@ -1,0 +1,3 @@
+[submodule "submodules/chromadoc"]
+	path = submodules/chromadoc
+	url = https://github.com/chromatic-solfege/chromadoc.git
