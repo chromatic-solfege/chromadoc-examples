@@ -6,8 +6,8 @@ A Chromadoc Example Project
 This is an example project for Chromadoc.
 
 
-<style>
+<style> 
     @import "/docs/custom.css"
-</style>
+</style> 
 
 [modeline]: # ( vim: set spell fo+=a path+=../ suffixesadd+=.md: )
